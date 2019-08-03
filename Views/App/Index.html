@@ -1,0 +1,31 @@
+<div id="panelMainContent">
+
+</div>
+<!-- COPYRIGHT-->
+<section class="p-t-60 p-b-20">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="copyright">
+                    <span id="spFooter"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END COPYRIGHT-->
+<script>
+    $(document).ready(function () {
+        if ($('#spFooter').length) {
+            $(document).prop('title', app.name + ' (' + app.version + ')');
+            $('#spFooter').html('<strong> <a href="' + app.website + '" target="_blank">' + app.name + ' <small>{ Version ' + app.version + ' }</small> </a></strong> | Registration <strong><a href="' + client.website + '" target="_blank"> ' + client.name + ' </a> </strong> | Developed by <strong> <a href="' + developer.website + '" target="_blank"> ' + developer.name + '</a> </strong>')
+            $('#spFooterSignIn').html('<strong> <a href="' + app.website + '" target="_blank">' + app.name + ' <small>{ Version ' + app.version + ' }</small> </a></strong> | Registration <strong><a href="' + client.website + '" target="_blank"> ' + client.name + ' </a> </strong> | Developed by <strong> <a href="' + developer.website + '" target="_blank"> ' + developer.name + '</a> </strong>')
+            $('#spClient').html(client.nameshort)
+            $('#spApp').html(app.nameshort + ' ~ v' + app.version)
+            $('#panelMainContent').html('<img src="assets/images/loader.svg" alt="Paris" class="center">');
+            xit.ui.openview('POST', null, null, 'Views/Dashboard/index-2.html', '#panelMainContent', true)
+        } else {
+            window.location = "error"
+        }
+    })
+</script>

@@ -1,0 +1,7 @@
+[
+    {
+        "label":"Appointment booking",
+        "image":"https://icon-library.net/images/appointment-icon-png/appointment-icon-png-29.jpg",
+        "view":"Views/Appointment/NewBooking.html|popUp"
+    }
+]

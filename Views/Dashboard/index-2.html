@@ -1,0 +1,155 @@
+<!-- HEADER DESKTOP-->
+<header class="header-desktop3 d-none d-lg-block">
+    <div class="section__content section__content--p35">
+        <div class="header3-wrap">
+            <div class="header__logo">
+                <a href="#">
+                    <img src="assets/images/logo.svg" alt="QuMS" />
+                </a>
+            </div>
+            <div class="header__navbar">
+                <ul class="list-unstyled" id="ulNavBar">
+                    <li class="">
+                        <a href="./">
+                            <i class="fas fa-tachometer-alt"></i>Dashboard
+                            <span class="bot-line"></span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#new" selector="new" view="Views/App/NewWhat.html|popUp"
+                            onclick="navClick(this, null)">
+                            <i class="fas fa-plus"></i>New
+                            <span class="bot-line"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="header__tool" hidden>
+                <div class="account-wrap">
+                    <div class="account-item account-item--style2 clearfix js-item-menu">
+                        <div class="image">
+                            <img src="" alt="John Doe" id="pUserAvatar" />
+                        </div>
+                        <div class="content">
+                            <a class="js-acc-btn" href="#"></a>
+                        </div>
+                        <div class="account-dropdown js-dropdown">
+                            <div class="info clearfix">
+                                <div class="image">
+                                    <a href="#">
+                                        <img src="" alt="John Doe" id="pUserAvatar2" />
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <h5 class="name">
+                                        <a href="#" id="pUserName"></a>
+                                    </h5>
+                                    <span class="email" id="pUserEmail"></span>
+                                </div>
+                            </div>
+                            <div class="account-dropdown__body">
+                                <div class="account-dropdown__item">
+                                    <a href="#">
+                                        <i class="zmdi zmdi-account"></i>Account</a>
+                                </div>
+                            </div>
+                            <div class="account-dropdown__footer">
+                                <a href="#" id="lSignOut">
+                                    <i class="zmdi zmdi-power"></i>SignOut</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- END HEADER DESKTOP-->
+<!-- PAGE CONTENT-->
+<div class="page-content--bgf7" id="panelContent">
+    <!-- WELCOME-->
+    <section class="welcome p-t-10">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="title-4">Welcome back
+                        <span id="pUserName2"></span>
+                    </h1>
+                    <hr class="line-seprate">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END WELCOME-->
+    <!-- STATISTIC-->
+    <section class="statistic statistic2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <div class="statistic__item statistic__item--green">
+                        <h2 class="number">1</h2>
+                        <span class="desc">Appointments</span>
+                        <div class="icon">
+                            <i class="zmdi zmdi-folder"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="statistic__item statistic__item--orange">
+                        <h2 class="number">0</h2>
+                        <span class="desc">Visits</span>
+                        <div class="icon">
+                            <i class="zmdi zmdi-folder"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr class="line-seprate">
+    <!-- END STATISTIC-->
+    <!-- VIDEOS-->
+    <section class="statistic statistic2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <iframe class="card-img-top" src="http://www.youtube.com/embed/W7qWa52k-nE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Video 1</h4>
+                            <p class="card-text">Description here
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                        <div class="card">
+                            <iframe class="card-img-top" src="http://www.youtube.com/embed/W7qWa52k-nE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            <div class="card-body">
+                                <h4 class="card-title mb-3">Video 1</h4>
+                                <p class="card-text">Description here
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+    <!-- END VIDEOS-->
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#lSignOut').click(function () {
+            AuthController.signOut()
+        })
+        var userModel = JSON.parse(xit.storage.getValue('loggedInUser'))
+        $('#pUserAvatar').attr('src', userModel.avatar)
+        $('#pUserAvatar2').attr('src', userModel.avatar)
+        $('#pUserAvatar3').attr('src', userModel.avatar)
+        $('#pUserName').html(userModel.firstName)
+        $('#pUserEmail').html(userModel.email)
+        $('#pUserName2').html(userModel.firstName)
+        NavBarController.getNavBar('Config/nav-1.config.json', '#ulNavBar')
+    })
+</script>

@@ -1,0 +1,19 @@
+<div class="row" id="dvNewWhats">
+
+</div>
+<script src="Controllers/AppController.js"></script>
+<script>
+    $(document).ready(function () {
+        AppController.getNewWhats()
+    })
+
+    function newWhatClick(view, payLoad) {
+        var viewItems = $(view).attr('view').split("|")
+        view = viewItems[0]
+        if (typeof viewItems[1] !== 'undefined') {
+            xit.ui.openmodal('POST', null, payLoad, view, '#modalL', true)
+        } else {
+            xit.ui.openview('POST', null, payLoad, view, '#panelMainContent', true)
+        }
+    }
+</script>
