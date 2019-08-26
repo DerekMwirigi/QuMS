@@ -5,18 +5,18 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong><span id="sTitle">New Appointment</span></strong>
+                        <strong><span id="sTitle">New video</span></strong>
                     </div>
                     <div class="card-body card-block">
                         <div class="form-horizontal">
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="text-input" class=" form-control-label">Date Time
+                                    <label for="text-input" class=" form-control-label">Title
                                     </label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="date" placeholder="Choose Date Time" class="form-control"
-                                        id="tDateTime">
+                                    <input type="text" placeholder="Title" class="form-control"
+                                        id="tTitle">
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -35,7 +35,7 @@
                                         Uploads</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="file" class="form-control" id="fUploads" accept=".jpg, .jpeg, .png" multiple>
+                                    <input type="file" class="form-control" id="fUploads" accept=".mp4, .gif" multiple>
                                     <label id="lbUpload"></label><label id="lbUploadUrls" hidden></label>
                                 </div>
                             </div>
@@ -54,21 +54,20 @@
         </div>
     </div>
 </div>
-<script src="Controllers/AppointmentController.js"></script>
+<script src="Controllers/SettingController.js"></script>
 <script>
     $(document).ready(function () {
         $('#btSave').click(function () {
-            var userModel = JSON.parse(xit.storage.getValue('loggedInUser'))
-            AppointmentController.create(this, JSON.stringify({
+            SettingController.createVideo(this, JSON.stringify({
                 description: $('#tDescription').val(),
-                dateTime: xit.dates.changeFormat($('#tDateTime').val()),
+                title: $('#tTitle').val(),
                 uploads: $('#lbUploadUrls').html()
             }))
         })
         $('#fUploads').change(function (){
             $('#btSave').attr("disabled", true)
             $('#lbUpload').html("Uploading, please wait...")
-            xit.files.upload('fUploads', JSON.stringify(['png', 'jpg', 'jpeg']), 100).then(function (response){
+            xit.files.upload('fUploads', JSON.stringify(['mp4', 'gif']), 100).then(function (response){
                 response = JSON.parse(response)
                 if(response.status_code == 1){
                     $('#btSave').attr("disabled", false)

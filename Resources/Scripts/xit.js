@@ -1,5 +1,5 @@
 ﻿xit = {
-    debug: true,
+    debug: false,
     ui: {
         processPlaceHolder: '<img src="assets/images/loader.svg" alt="Paris" class="center">',
         openpage: function (resourceUrl) {
@@ -178,7 +178,7 @@
                         console.log(e)
                     }
                 }
-                if(data != null){ xhr.open('GET', endpoint + $.param(data), true) }else{  xhr.open('GET', endpoint, true) }
+                if(data != null){ xhr.open('GET', endpoint + '?' + $.param(data), true) }else{  xhr.open('GET', endpoint, true) }
                 if(headers != null){
                     for (var i in headers) {
                         var header = headers[i].split(':')
@@ -198,24 +198,24 @@
             formData.append('appId', appId)
             for (let i = 0; i < files.length; i++) {
                 var file = files[i]
-                formData.append('file', file)
+                formData.append('files[]', file)
             }
             return new Promise(
                 function(resolve, reject){
-                    $('#'+fileInputView).text('Uploading...')
                     var xhr = new XMLHttpRequest()
                     xhr.onload = function() {
-                        resolve(JSON.parse(this.response))
-                        $('#'+fileInputView).text('Upload')
+                        resolve(this.response)
+                        if (xit.debug) {
+                            console.log(this.response)
+                        }
                     }
                     xhr.onprogress = function (event){
                        
                     }
-                    xhr.onerror = function (){
-                        $('#'+fileInputView).text('Upload')
-                        reject()
+                    xhr.onerror = function (error){
+                        reject(error)
                     }
-                    xhr.open('POST', 'http://resource.calista.co.ke/api/upload/v3.php', true);
+                    xhr.open('POST', 'http://resource.calista.co.ke/api/upload/v1.php', true);
                     xhr.send(formData);
                 }
             )

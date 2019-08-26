@@ -6,11 +6,11 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="mx-auto d-block">
-                            <img class="rounded-circle mx-auto d-block" src="assets/images/icon/avatar-01.jpg"
+                            <img class="rounded-circle mx-auto d-block" src="assets/images/icon/avatar-01.jpg" id="pUserAvatar"
                                 alt="Card image cap">
-                            <h5 class="text-sm-center mt-2 mb-1">DerekPRINCE</h5>
+                            <h5 class="text-sm-center mt-2 mb-1" id="pUserName2">DerekPRINCE</h5>
                             <div class="location text-sm-center">
-                                <i class="fa fa-email"></i> derek@gmail.com </div>
+                                <i class="fa fa-email"></i> <span id="pUserEmail2"></span> </div>
                         </div>
                         <hr>
                         <div class="row">
@@ -23,22 +23,14 @@
                                         <div class="form-horizontal">
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">First
-                                                        Name</label>
+                                                    <label for="text-input" class=" form-control-label">Business Name
+                                                        </label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" placeholder="First Name" class="form-control">
+                                                    <input type="text" placeholder="Business Name" class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
-                                                <div class="col col-md-3">
-                                                    <label for="email-input" class=" form-control-label">Last
-                                                        Name</label>
-                                                </div>
-                                                <div class="col-12 col-md-9">
-                                                    <input type="tel" placeholder="Last Name" class="form-control">
-                                                </div>
-                                            </div>
+                                            
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="email-input" class=" form-control-label">Email</label>
@@ -48,11 +40,20 @@
                                                 </div>
                                             </div>
                                             <div class="row form-group">
+                                                    <div class="col col-md-3">
+                                                        <label for="email-input" class=" form-control-label">
+                                                            API Key</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <input type="text" placeholder="API Key" class="form-control">
+                                                    </div>
+                                                </div>
+                                            <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="email-input" class=" form-control-label">Mobile</label>
+                                                    <label for="email-input" class=" form-control-label">SMS Id</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="number" placeholder="Mobile" class="form-control">
+                                                    <input type="text" placeholder="SMS ID" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -70,44 +71,44 @@
                             <div class="col-lg-6">
                                 <div class="card">
                                     <div class="card-header">
-                                        <strong>Update Password</strong>
+                                        <strong>Update Secret</strong>
                                     </div>
                                     <div class="card-body card-block">
                                         <div class="form-horizontal">
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="text-input" class=" form-control-label">Old
-                                                        Password</label>
+                                                        Secret</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="password" placeholder="Password" class="form-control"
+                                                    <input type="password" placeholder="Secret" class="form-control"
                                                         autocomplete="off">
                                                     <small class="form-text text-muted">Enter the current
-                                                        password</small>
+                                                        secret</small>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="email-input" class=" form-control-label">New
-                                                        Password</label>
+                                                        secret</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="password" placeholder="New Password"
+                                                    <input type="password" placeholder="New Secret"
                                                         class="form-control" autocomplete="off">
                                                     <small class="help-block form-text">Please enter your new
-                                                        password</small>
+                                                        secret</small>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="email-input" class=" form-control-label">Retype
-                                                        Password</label>
+                                                        secret</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="password" placeholder="Confirm New Password"
+                                                    <input type="password" placeholder="Confirm New Secret"
                                                         class="form-control" autocomplete="off">
                                                     <small class="help-block form-text">Please confirm your new
-                                                        password</small>
+                                                        secret</small>
                                                 </div>
                                             </div>
 
@@ -130,3 +131,11 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        var userModel = JSON.parse(xit.storage.getValue('loggedInUser'))
+        $('#pUserAvatar').attr('src', userModel.avatar)
+        $('#pUserName2').html(userModel.firstName)
+        $('#pUserEmail2').html(userModel.email)
+    })
+</script>

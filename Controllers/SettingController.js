@@ -1,90 +1,57 @@
 SettingController = {
-    createVehicleMake : function (view, makeModel){
-        $(view).text('Creating...')
-        xit.request.post(['Authorization:Bearer ' + AuthController.getToken()], makeModel, endpoints.common.create_vehicle_make).then(function (response){
+    createVideo : function (view, makeModel){
+        $(view).text('Saving...')
+        xit.request.post(['Authorization:Bearer ' + JSON.parse(xit.storage.getValue('loggedInUser')).token], makeModel, endpoints.video.create).then(function (response){
             response = JSON.parse(response)
             if(response.status_code == 1){
-                $('#tMake').val()
-                SettingController.displayVMakesListView(response.data)
+                alert('fsh')
             }else { 
                 Observer.displayErrors(response)
             }
-            $(view).text('Create')
         }).catch(function (error){
-            $(view).text('Create')
             alert(error)
         })
+        $(view).text('Save')
+
     },
-    getVehicleMakes : function (){
-        Observer.status(Observer.states.LOADING, '#tVMakes')
-        xit.request.get(null, null, endpoints.common.fetch_vehicle_makes).then(function (response){
+    fetchVideos : function (filterModel){
+        $('#tVideos').append(xit.ui.processPlaceHolder)
+        xit.request.get(null, filterModel, endpoints.video.fetch).then(function (response){
             response = JSON.parse(response)
             if(response.status_code == 1){
-                SettingController.displayVMakesListView(response.data)
-            }else{
-                Observer.displayErrors(response)
-            }
-        }).catch(function (error){
-            console.log(error)
-        }) 
-    },
-    displayVMakesListView :function (makeModels){
-        var htmlContent = ''
-        makeModels.forEach(makeModel => {
-            htmlContent += '<tr>'
-            htmlContent += '<td>' + makeModel.id + '</td>'
-            htmlContent += '<td>' + makeModel.make + '</td>'
-            htmlContent += '<td>' + makeModel.models + '</td>'
-            htmlContent += '<td><i class="fa fa-ellipsis-v" aria-hidden="true"></i></td>'
-            htmlContent += '</tr>'
-        })
-        $('#tVMakes').html(htmlContent)
-    },
-    getModels : function (){
-        
-    },
-    createRoute : function (view, routeModel){
-        $(view).text('Creating...')
-        xit.request.post(['Authorization:Bearer ' + AuthController.getToken()], routeModel, endpoints.common.create_route).then(function (response){
-            response = JSON.parse(response)
-            if(response.status_code == 1){
-                $('#tRoute').val()
-                $('#tPeakFare').val()
-                $('#tOffPeakFare').val()
-                SettingController.displayRoutesListView(response.data)
+                $("#tVideos").find('img').each(function() {$(this).remove()})
+                SettingController.displayVideosLV(response.data)
             }else { 
                 Observer.displayErrors(response)
             }
-            $(view).text('Create')
         }).catch(function (error){
-            $(view).text('Create')
             alert(error)
         })
     },
-    getRoutes : function (){
-        Observer.status(Observer.states.LOADING, '#tbRoutes')
-        xit.request.get(null, null, endpoints.common.fetch_routes).then(function (response){
+    displayVideosLV :function (videoModels){
+        var htmlContent = ''
+        videoModels.forEach(videoModel => {
+            htmlContent += '<tr id="' + videoModel.id + '" style="cursor: pointer;" onclick="SettingController.openVideo(this)">'
+            htmlContent += '<td>' + videoModel.id + '</td>'
+            htmlContent += '<td>' + videoModel.title + '</td>'
+            htmlContent += '<td>' + videoModel.description + '</td>'
+            htmlContent += '<td>' + videoModel.createdOn + '</td>'
+            htmlContent += '<td>' + videoModel.statusName + '</td>'
+            htmlContent += '</tr>'
+        })
+        $('#tbVideos').html(htmlContent)
+    },
+    openVideo : function (view){
+        xit.request.get(null, {id: $(view).attr('id')}, endpoints.video.view).then(function (response){
             response = JSON.parse(response)
             if(response.status_code == 1){
-                SettingController.displayRoutesListView(response.data)
-            }else{
+                xit.storage.saveItem('videoModel', JSON.stringify(response.data))
+                xit.ui.openmodal('GET', null, null, 'Views/Video/VideoInfo.html', '#modalL', true)
+            }else { 
                 Observer.displayErrors(response)
             }
         }).catch(function (error){
-            console.log(error)
-        }) 
-    },
-    displayRoutesListView :function (routeModels){
-        var htmlContent = ''
-        routeModels.forEach(routeModel => {
-            htmlContent += '<tr>'
-            htmlContent += '<td>' + routeModel.id + '</td>'
-            htmlContent += '<td>' + routeModel.route + '</td>'
-            htmlContent += '<td>' + routeModel.peakFare + '</td>'
-            htmlContent += '<td>' + routeModel.offPeakFare + '</td>'
-            htmlContent += '<td><i class="fa fa-ellipsis-v" aria-hidden="true"></i></td>'
-            htmlContent += '</tr>'
+            alert(error)
         })
-        $('#tbRoutes').html(htmlContent)
     }
 }

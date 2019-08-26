@@ -1,0 +1,28 @@
+<br />
+<div class="section__content section__content--p5" style="height: 500px;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card" style="height: 100%;">
+                    <iframe class="card-img-top" src="" frameborder="0" id="ifVideo"
+                        allow="autoplay; encrypted-media" style="height: 90%;" allowfullscreen></iframe>
+                    <div class="card-body">
+                        <h4 class="card-title mb-3" id="h4Title">...</h4>
+                        <p class="card-text" id="pDescription">...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="Controllers/AppointmentController.js"></script>
+<script>
+    $(document).ready(function () {
+        var videoModel = JSON.parse(xit.storage.getValue('videoModel'))
+        console.log(videoModel)
+        $('#ifVideo').attr('src', videoModel.link)
+        $('#h4Title').html(videoModel.title)
+        $('#pDescription').html(videoModel.description)
+    })
+</script>

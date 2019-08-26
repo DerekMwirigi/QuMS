@@ -87,7 +87,7 @@
             <div class="row">
                 <div class="col-md-6 col-lg-3">
                     <div class="statistic__item statistic__item--green">
-                        <h2 class="number">1</h2>
+                        <h2 class="number"><span id="spAppointments">0</span> </h2>
                         <span class="desc">Appointments</span>
                         <div class="icon">
                             <i class="zmdi zmdi-folder"></i>
@@ -96,7 +96,7 @@
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="statistic__item statistic__item--orange">
-                        <h2 class="number">0</h2>
+                        <h2 class="number"><span id="spVisits">0</span></h2>
                         <span class="desc">Visits</span>
                         <div class="icon">
                             <i class="zmdi zmdi-folder"></i>
@@ -114,7 +114,8 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <iframe class="card-img-top" src="http://www.youtube.com/embed/W7qWa52k-nE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <iframe class="card-img-top" src="http://www.youtube.com/embed/W7qWa52k-nE" frameborder="0"
+                            allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         <div class="card-body">
                             <h4 class="card-title mb-3">Video 1</h4>
                             <p class="card-text">Description here
@@ -123,21 +124,22 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                        <div class="card">
-                            <iframe class="card-img-top" src="http://www.youtube.com/embed/W7qWa52k-nE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                            <div class="card-body">
-                                <h4 class="card-title mb-3">Video 1</h4>
-                                <p class="card-text">Description here
-                                </p>
-                            </div>
+                    <div class="card">
+                        <iframe class="card-img-top" src="http://www.youtube.com/embed/W7qWa52k-nE" frameborder="0"
+                            allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Video 1</h4>
+                            <p class="card-text">Description here
+                            </p>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </section>
     <!-- END VIDEOS-->
 </div>
-
+<script src="Controllers/DashboardController.js"></script>
 <script>
     $(document).ready(function () {
         $('#lSignOut').click(function () {
@@ -150,6 +152,7 @@
         $('#pUserName').html(userModel.firstName)
         $('#pUserEmail').html(userModel.email)
         $('#pUserName2').html(userModel.firstName)
-        NavBarController.getNavBar('Config/nav-1.config.json', '#ulNavBar')
+        NavBarController.getNavBar('Config/nav-2.config.json', '#ulNavBar')
+        DashboardController.stats()
     })
 </script>

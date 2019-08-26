@@ -9,7 +9,7 @@ AuthController = {
     },
     signIn : function (view, authModel){
         $(view).text('Loading...')
-        xit.request.post(null, authModel, endpoints.auth.signIn).then(function (response){
+        xit.request.post(null, authModel, endpoints.auth.signin).then(function (response){
             response = JSON.parse(response)
             if(response.status_code == 1){
                 xit.storage.saveItem('loggedInUser', JSON.stringify(response.data))
@@ -24,8 +24,9 @@ AuthController = {
         })
     },
     signUp : function (view, authModel){
+        console.log(authModel)
         $(view).text('Loading...')
-        xit.request.post(null, authModel, endpoints.auth.signUp).then(function (response){
+        xit.request.post(null, authModel, endpoints.auth.signup).then(function (response){
             response = JSON.parse(response)
             if(response.status_code == 1){
                 xit.storage.saveItem('loggedInUser', JSON.stringify(response.data))

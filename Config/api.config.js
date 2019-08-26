@@ -1,32 +1,25 @@
 baseurl = {
-    url: 'http://localhost:81/DevOps/SafiriEazzie/SafiriEazzieApi/api/',
+    url: 'http://localhost:81/DevOps/QuMSApi/api/',
 }
 endpoints = {
     auth: {
-        signIn: baseurl.url + 'oauth/verifyPassword.php',
-        signUp: baseurl.url + 'oauth/signup.php',
+        signin: baseurl.url + 'auth/verifyusecret',
+        signup: baseurl.url + 'auth/signup',
     },
-    driver: {
-        create: baseurl.url + 'driver/create.php',
-        fetch: baseurl.url + 'driver/fetch.php'
+    appointment: {
+        create: baseurl.url + 'appointment/create',
+        fetch: baseurl.url + 'appointment/fetch'
     },
-    owner: {
-        create: baseurl.url + 'owner/create.php',
-        fetch: baseurl.url + 'owner/fetch.php'
+    visit: {
+        create: baseurl.url + 'visit/create',
+        fetch: baseurl.url + 'visit/fetch'
     },
-    vehicle: {
-        create: baseurl.url + 'vehicle/create.php',
-        fetch: baseurl.url + 'vehicle/fetch.php'
+    video: {
+        create: baseurl.url + 'video/create',
+        view: baseurl.url + 'video/view',
+        fetch: baseurl.url + 'video/fetch'
     },
-    common: {
-        create_route:  baseurl.url + 'common/create-route.php',
-        fetch_routes: baseurl.url + 'common/fetch-routes.php',
-        create_vehicle_make:  baseurl.url + 'common/create-vehicle-make.php',
-        fetch_vehicle_makes: baseurl.url + 'common/fetch-vehicle-makes.php',
-        fetch_vehicle_models: baseurl.url + 'common/fetch-vehicle-models.php',
-        fetch_owners: baseurl.url + 'common/fetch-owners-fetch.php'
-    },
-    analysis: {
-        stats: baseurl.url + 'analysis/stats.php'
+    analytics: {
+        stats: baseurl.url + 'analytics/data-blocks'
     }
 }

@@ -23,7 +23,16 @@
             $('#spClient').html(client.nameshort)
             $('#spApp').html(app.nameshort + ' ~ v' + app.version)
             $('#panelMainContent').html('<img src="assets/images/loader.svg" alt="Paris" class="center">');
-            xit.ui.openview('POST', null, null, 'Views/Dashboard/index-2.html', '#panelMainContent', true)
+            
+            switch(JSON.parse(xit.storage.getValue('loggedInUser')).roleId){
+                case 1:
+                    xit.ui.openview('POST', null, null, 'Views/Dashboard/index-1.html', '#panelMainContent', true)
+                    break;
+                case 2:
+                    xit.ui.openview('POST', null, null, 'Views/Dashboard/index-2.html', '#panelMainContent', true)
+                    break;
+            }
+           
         } else {
             window.location = "error"
         }
