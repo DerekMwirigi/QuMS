@@ -5,7 +5,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong><span id="sTitle">New video</span></strong>
+                        <strong><span id="sTitle">New video****</span></strong>
                     </div>
                     <div class="card-body card-block">
                         <div class="form-horizontal">
@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="col-12 col-md-9">
                                     <input type="file" class="form-control" id="fUploads" accept=".mp4, .gif" multiple>
-                                    <label id="lbUpload"></label><label id="lbUploadUrls" hidden></label>
+                                    <label id="lbUpload"></label><label id="lbUploadUrls">cscs</label>
                                 </div>
                             </div>
                         </div>
@@ -61,13 +61,13 @@
             SettingController.createVideo(this, JSON.stringify({
                 description: $('#tDescription').val(),
                 title: $('#tTitle').val(),
-                uploads: $('#lbUploadUrls').html()
+                link: JSON.parse($('#lbUploadUrls').html())[0].hyperLinkUrl
             }))
         })
         $('#fUploads').change(function (){
             $('#btSave').attr("disabled", true)
             $('#lbUpload').html("Uploading, please wait...")
-            xit.files.upload('fUploads', JSON.stringify(['mp4', 'gif']), 100).then(function (response){
+            xit.files.upload('fUploads', JSON.stringify(['mp4', 'gif']), 28).then(function (response){
                 response = JSON.parse(response)
                 if(response.status_code == 1){
                     $('#btSave').attr("disabled", false)

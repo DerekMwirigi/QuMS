@@ -16,19 +16,31 @@ VisitController = {
             alert(error)
         })
     },
-    fetch : function (filterModel){
+    fetch : function (){
+        var userModel = JSON.parse(xit.storage.getValue('loggedInUser'))
+        var filterModel = null
+        if(userModel.roleId == 1){ 
+            filterModel = {
+                doctorId:userModel.id 
+            }
+        } else {
+            filterModel = {
+                patientId:userModel.id 
+            } 
+        }
         $('#tVisits').append(xit.ui.processPlaceHolder)
-        var headers = ['Authorization: Bearer ' + JSON.parse(xit.storage.getValue('loggedInUser')).token]
+        var headers = ['Authorization: Bearer ' + userModel.token]
         xit.request.get(headers, filterModel, endpoints.visit.fetch).then(function (response){
             response = JSON.parse(response)
             if(response.status_code == 1){
-                $("#tVisits").find('img').each(function() {$(this).remove()})
                 VisitController.displayLV(response.data)
             }else { 
                 Observer.displayErrors(response)
             }
+            $("#tVisits").find('img').each(function() {$(this).remove()})
         }).catch(function (error){
             alert(error)
+            $("#tVisits").find('img').each(function() {$(this).remove()})
         })
     },
     displayLV :function (visitModels){

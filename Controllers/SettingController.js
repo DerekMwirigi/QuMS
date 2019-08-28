@@ -1,7 +1,8 @@
 SettingController = {
-    createVideo : function (view, makeModel){
+    createVideo : function (view, videoModel){
         $(view).text('Saving...')
-        xit.request.post(['Authorization:Bearer ' + JSON.parse(xit.storage.getValue('loggedInUser')).token], makeModel, endpoints.video.create).then(function (response){
+        console.log(videoModel)
+        xit.request.post(['Authorization:Bearer ' + JSON.parse(xit.storage.getValue('loggedInUser')).token], videoModel, endpoints.video.create).then(function (response){
             response = JSON.parse(response)
             if(response.status_code == 1){
                 alert('fsh')

@@ -8,6 +8,7 @@ endpoints = {
     },
     appointment: {
         create: baseurl.url + 'appointment/create',
+        view: baseurl.url + 'appointment/view',
         fetch: baseurl.url + 'appointment/fetch'
     },
     visit: {
